@@ -25,6 +25,14 @@ connection.once('open', () => {
 })
 
 
+//requering the routes
+const usersRoutes = require('../../back-end/routes/users');
+const moviesRoutes =  require('../../back-end/routes/movies');
+
+//usign the files
+//app.use('/movies', moviesRoutes);
+app.use('/users', usersRoutes);
+
 //listening app
 app.listen(port, () => {
   console.log(`working as expected :) on port: ${port}`);
