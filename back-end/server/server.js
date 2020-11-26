@@ -26,7 +26,7 @@ connection.once('open', () => {
 
 
 
-//usign the files
+//declaring the routes and using them
 app.use('/movies', moviesRoutes);
 app.use('/users', usersRoutes);
 app.use('/users/register', usersRoutes);
