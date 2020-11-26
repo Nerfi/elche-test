@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+//requering the routes
+const usersRoutes = require('../../back-end/routes/users');
+const moviesRoutes =  require('../../back-end/routes/movies');
 
 //connection to db
 const mongoose = require('mongoose');
-
-
 require('dotenv').config();
 
 const app = express();
@@ -14,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 
 //setting up DB connection
-
 const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
@@ -25,13 +25,11 @@ connection.once('open', () => {
 })
 
 
-//requering the routes
-const usersRoutes = require('../../back-end/routes/users');
-const moviesRoutes =  require('../../back-end/routes/movies');
 
 //usign the files
-//app.use('/movies', moviesRoutes);
+app.use('/movies', moviesRoutes);
 app.use('/users', usersRoutes);
+app.use('/users/register', usersRoutes);
 
 //listening app
 app.listen(port, () => {
